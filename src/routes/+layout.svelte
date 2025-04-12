@@ -1,13 +1,16 @@
 <script lang="ts">
-	import { page } from '$app/state';
-	import { blur, fade } from 'svelte/transition';
+	import { blur } from 'svelte/transition';
 	import '../app.css';
-	import { circInOut } from 'svelte/easing';
 	import { duration, easing } from '$lib/transition/index.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import { PUB_PLAUSIBLE_URL, PUB_HOSTNAME } from '$env/static/public';
 
 	let { children, data } = $props();
 </script>
+
+{#if !!PUB_PLAUSIBLE_URL}
+	<script defer data-domain={PUB_HOSTNAME} src="{PUB_PLAUSIBLE_URL}/js/script.js"></script>
+{/if}
 
 <div
 	class="fixed top-0 left-0 -z-10 h-screen w-screen"

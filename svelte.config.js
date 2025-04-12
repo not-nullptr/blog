@@ -16,7 +16,14 @@ const config = {
 			]
 		})
 	],
-	kit: { adapter: adapter(), paths: { relative: false } },
+	kit: {
+		adapter: adapter(),
+		paths: { relative: false },
+		env: {
+			publicPrefix: 'PUB_',
+			privatePrefix: 'PRI_'
+		}
+	},
 	extensions: ['.svelte', '.svx']
 };
 
