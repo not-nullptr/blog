@@ -4,22 +4,48 @@
 	import clsx from 'clsx';
 	import Socials from './Socials.svelte';
 	import ProgressiveBlur from './ProgressiveBlur.svelte';
+	import { Tween } from 'svelte/motion';
+	import { duration, easing } from '$lib/transition/index.svelte';
+	import { onMount } from 'svelte';
 
 	const _items = {
 		home: '/'
 	};
 
+	const strength = new Tween(0, {
+		duration: duration / 3,
+		easing
+	});
+
 	const items = $derived(Object.entries(_items));
 	const owner = Author.all().find((a) => a.name === 'nullptr')!;
 
 	const isHome = $derived(page.url.pathname === '/');
+
+	onMount(() => {
+		strength.set(0);
+		const handleScroll = () => {
+			if (window.scrollY > 0) {
+				strength.set(64);
+			} else {
+				strength.set(0);
+			}
+		};
+
+		handleScroll();
+
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	});
 </script>
 
 <div class="fixed top-0 left-0 z-50 flex w-screen pt-6 text-2xl">
-	<div class="absolute top-0 left-0 -z-10 h-[250%] w-full">
-		<ProgressiveBlur steps={16} side="top" tint="#10041e" />
+	<div class="pointer-events-none absolute top-0 left-0 -z-10 h-[200%] w-full">
+		<ProgressiveBlur strength={strength.current} steps={16} side="top" tint="#10041e" />
 	</div>
-	<div class="flex w-full justify-center px-8">
+	<div class="flex w-full justify-center px-8 pb-6">
 		<div
 			class={clsx('flex w-full max-w-3xl justify-between', {
 				'max-w-xl': isHome
