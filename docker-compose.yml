@@ -1,7 +1,11 @@
 services:
   blog:
+    environment:
+      - PUB_PLAUSIBLE_URL=${PUB_PLAUSIBLE_URL:-https://plausible.example.com}
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        PUB_PLAUSIBLE_URL: ${PUB_PLAUSIBLE_URL:-https://plausible.example.com}
     ports:
       - "28473:80"

@@ -1,6 +1,11 @@
 FROM oven/bun:latest AS builder
 
 WORKDIR /app
+
+ARG PUB_PLAUSIBLE_URL
+
+ENV PUB_PLAUSIBLEURL=${PUB_PLAUSIBLE_URL}
+
 COPY package.json bun.lock ./
 
 RUN bun install
