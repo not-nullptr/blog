@@ -12,10 +12,13 @@
 		home: '/'
 	};
 
-	const strength = new Tween(0, {
+	const tweenOptions = {
 		duration: duration / 3,
 		easing
-	});
+	};
+
+	const strength = new Tween(0, tweenOptions);
+	const alpha = new Tween(0, tweenOptions);
 
 	const items = $derived(Object.entries(_items));
 	const owner = Author.all().find((a) => a.name === 'nullptr')!;
@@ -26,9 +29,11 @@
 		strength.set(0);
 		const handleScroll = () => {
 			if (window.scrollY > 0) {
-				strength.set(64);
+				strength.set(32);
+				alpha.set(1);
 			} else {
 				strength.set(0);
+				alpha.set(0);
 			}
 		};
 
@@ -43,7 +48,12 @@
 
 <div class="fixed top-0 left-0 z-50 flex w-screen pt-6 text-2xl">
 	<div class="pointer-events-none absolute top-0 left-0 -z-10 h-[200%] w-full">
-		<ProgressiveBlur strength={strength.current} steps={16} side="top" tint="#10041e" />
+		<ProgressiveBlur
+			strength={strength.current}
+			steps={16}
+			side="top"
+			tint="rgba(16, 4, 30, {alpha.current})"
+		/>
 	</div>
 	<div class="flex w-full justify-center px-8 pb-6">
 		<div
