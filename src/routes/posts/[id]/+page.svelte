@@ -10,6 +10,10 @@
 	transitionState.clickedPost = data.post;
 </script>
 
+<svelte:head>
+	<title>{data.post.title} // nullptr's blog</title>
+</svelte:head>
+
 <div
 	in:receive|global={{ key: `${id}-container` }}
 	out:send|global={{ key: `${id}-container` }}
