@@ -16,7 +16,7 @@ const config = {
 			]
 		})
 	],
-	kit: { adapter: adapter() },
+	kit: { adapter: adapter(), paths: { relative: false } },
 	extensions: ['.svelte', '.svx']
 };
 
