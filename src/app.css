@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+@import 'prism-themes/themes/prism-shades-of-purple.css';
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--font-sans: 'TT Commons Pro', sans-serif;
+	--font-mono: 'IBM Plex Mono', monospace;
+}
+
+@font-face {
+	font-family: 'TT Commons Pro';
+	src: url($lib/fonts/tt-commons.ttf);
+}
+
+@font-face {
+	font-family: 'IBM Plex Mono';
+	font-weight: 600;
+	src: url($lib/fonts/ibm-plex-mono-semibold.ttf);
+}
+
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url($lib/fonts/ibm-plex-mono.ttf);
+}
+
+:root {
+	color-scheme: dark;
+}
+
+code * {
+	font-family: var(--font-mono) !important;
+}
+
+body {
+	overflow-x: hidden;
+}

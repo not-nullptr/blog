@@ -1,0 +1,16 @@
+[
+	{
+		"name": "nullptr",
+		"bio": "scumfuck flowergirl",
+		"socials": [
+			{
+				"id": "twitter",
+				"link": "https://x.com/notnullptr"
+			},
+			{
+				"id": "github",
+				"link": "https://github.com/not-nullptr"
+			}
+		]
+	}
+]
