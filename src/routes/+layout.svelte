@@ -8,9 +8,11 @@
 	let { children, data } = $props();
 </script>
 
-{#if !!PUB_PLAUSIBLE_URL}
-	<script defer data-domain={PUB_HOSTNAME} src="{PUB_PLAUSIBLE_URL}/js/script.js"></script>
-{/if}
+<svelte:head>
+	{#if !!PUB_PLAUSIBLE_URL}
+		<script defer data-domain={PUB_HOSTNAME} src="{PUB_PLAUSIBLE_URL}/js/script.js"></script>
+	{/if}
+</svelte:head>
 
 <div
 	class="fixed top-0 left-0 -z-10 h-screen w-screen"
